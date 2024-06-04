@@ -22,7 +22,7 @@ const churchInfo: InfoCardImageProps = {
   timeDescription: "4:00pm",
   locationDescription: "Talia 329, Contry Tesoro, 64830 Monterrey, N.L.",
   link: "https://maps.app.goo.gl/U78bbf73cP3ZZyat8",
-  imageSrc: "/icons/church-icon.png",
+  imageSrc: `${process.env.PUBLIC_URL}/icons/church-icon.png`,
 };
 
 const civilInfo: InfoCardImageProps = {
@@ -33,7 +33,7 @@ const civilInfo: InfoCardImageProps = {
   locationDescription:
     "Carr Nacional 2700, Valle de Cristal, 64986 Monterrey, N.L.",
   link: "https://maps.app.goo.gl/DqhbbiNQbHyxyhFc7",
-  imageSrc: "/pictures/details/Civil.jpg",
+  imageSrc: `${process.env.PUBLIC_URL}/pictures/details/Civil.jpg`,
 };
 
 const receptionInfo: InfoCardImageProps = {
@@ -44,7 +44,7 @@ const receptionInfo: InfoCardImageProps = {
   locationDescription:
     "Carr Nacional 2700, Valle de Cristal, 64986 Monterrey, N.L.",
   link: "https://maps.app.goo.gl/DqhbbiNQbHyxyhFc7",
-  imageSrc: "/icons/reception-icon.png",
+  imageSrc: `${process.env.PUBLIC_URL}/icons/reception-icon.png`,
 };
 
 export default function EventDetails() {
@@ -92,7 +92,7 @@ export default function EventDetails() {
                 <Flex justify={"center"}>
                   <Image
                     alt="Melina y Ever"
-                    src={"/pictures/details/dresscode.png"}
+                    src={`${process.env.PUBLIC_URL}/pictures/details/dresscode.png`}
                     width="35%"
                   />
                 </Flex>

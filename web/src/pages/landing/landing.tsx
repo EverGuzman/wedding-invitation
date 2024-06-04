@@ -35,7 +35,7 @@ export default function Landing() {
         >
           <Image
             alt="Melina y Ever"
-            src={`/pictures/CASUAL-141.jpg`}
+            src={`${process.env.PUBLIC_URL}/pictures/CASUAL-141.jpg`}
             width="100%"
             objectFit="cover"
             objectPosition={{

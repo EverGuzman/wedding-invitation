@@ -6,7 +6,7 @@ const targetDate: Date = new Date("2024-09-15T16:00:00");
 // const text: string = `El destino nos puso en el mismo camino y ahora caminaremos juntos hasta el final`
 
 const backgroundStyle = {
-  backgroundImage: "url(/pictures/CASUAL-40.jpg)",
+  backgroundImage: `url(${process.env.PUBLIC_URL}/pictures/CASUAL-40.jpg)`,
   backgroundSize: "cover",
   backgroundPosition: "0px -850px",
   backgroundRepeat: "no-repeat",
