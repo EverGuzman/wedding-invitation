@@ -1,0 +1,31 @@
+{
+  "files": {
+    "main.css": "/wedding-invitation/static/css/main.d110cfb5.css",
+    "main.js": "/wedding-invitation/static/js/main.665c0f6c.js",
+    "static/js/787.9b74c651.chunk.js": "/wedding-invitation/static/js/787.9b74c651.chunk.js",
+    "static/media/amsterdam-four.ttf": "/wedding-invitation/static/media/amsterdam-four.64154e4485e61ccc7cd9.ttf",
+    "static/media/birthstone-bounce-all-400-normal.woff": "/wedding-invitation/static/media/birthstone-bounce-all-400-normal.fe9265aa4e048db93c74.woff",
+    "static/media/birthstone-all-400-normal.woff": "/wedding-invitation/static/media/birthstone-all-400-normal.b51e4b975c96191a6990.woff",
+    "static/media/charm-all-400-normal.woff": "/wedding-invitation/static/media/charm-all-400-normal.a62e402b00598ec9063d.woff",
+    "static/media/birthstone-bounce-latin-400-normal.woff2": "/wedding-invitation/static/media/birthstone-bounce-latin-400-normal.55d3df02e1f2ff7f88d7.woff2",
+    "static/media/birthstone-bounce-latin-ext-400-normal.woff2": "/wedding-invitation/static/media/birthstone-bounce-latin-ext-400-normal.0b0517dece460d4cd312.woff2",
+    "static/media/birthstone-latin-400-normal.woff2": "/wedding-invitation/static/media/birthstone-latin-400-normal.31aa63805e1fefb23797.woff2",
+    "static/media/damion-all-400-normal.woff": "/wedding-invitation/static/media/damion-all-400-normal.976ce8732f4fb6f6a238.woff",
+    "static/media/birthstone-latin-ext-400-normal.woff2": "/wedding-invitation/static/media/birthstone-latin-ext-400-normal.cde69b606690780f9404.woff2",
+    "static/media/charm-latin-400-normal.woff2": "/wedding-invitation/static/media/charm-latin-400-normal.75669bb034b028865a27.woff2",
+    "static/media/damion-latin-400-normal.woff2": "/wedding-invitation/static/media/damion-latin-400-normal.da4060418ab69ad92e1d.woff2",
+    "static/media/charm-thai-400-normal.woff2": "/wedding-invitation/static/media/charm-thai-400-normal.70ad9d88798b0468901f.woff2",
+    "static/media/charm-latin-ext-400-normal.woff2": "/wedding-invitation/static/media/charm-latin-ext-400-normal.68b9a7ae7d2407fa60b5.woff2",
+    "static/media/birthstone-bounce-vietnamese-400-normal.woff2": "/wedding-invitation/static/media/birthstone-bounce-vietnamese-400-normal.138678a579ccce717963.woff2",
+    "static/media/birthstone-vietnamese-400-normal.woff2": "/wedding-invitation/static/media/birthstone-vietnamese-400-normal.04774f8c48f5275eb68e.woff2",
+    "static/media/charm-vietnamese-400-normal.woff2": "/wedding-invitation/static/media/charm-vietnamese-400-normal.2f1d2aecf16b718fcf7a.woff2",
+    "index.html": "/wedding-invitation/index.html",
+    "main.d110cfb5.css.map": "/wedding-invitation/static/css/main.d110cfb5.css.map",
+    "main.665c0f6c.js.map": "/wedding-invitation/static/js/main.665c0f6c.js.map",
+    "787.9b74c651.chunk.js.map": "/wedding-invitation/static/js/787.9b74c651.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.d110cfb5.css",
+    "static/js/main.665c0f6c.js"
+  ]
+}
