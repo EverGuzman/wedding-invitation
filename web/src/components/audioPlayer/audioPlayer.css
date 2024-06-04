@@ -1,0 +1,28 @@
+.audio-player {
+  width: 300px;
+  padding: 10px;
+  background-color: #f3f3f3;
+  border-radius: 5px;
+}
+
+.controls {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.play-pause {
+  background: none;
+  border: none;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.seek-bar {
+  width: 100%;
+  cursor: pointer;
+}
+
+.duration {
+  font-size: 14px;
+}
