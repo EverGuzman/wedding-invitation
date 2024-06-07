@@ -53,7 +53,6 @@ export default function NavigationBar() {
     <Box>
       <Flex
         bg="rgba(255, 255, 255, 0.3)"
-        color={useColorModeValue("gray.600", "white")}
         minH={"60px"}
         py={{ base: 2 }}
         px={{ base: 4 }}
