@@ -13,34 +13,73 @@ import {
   Text,
   useColorModeValue,
 } from "@chakra-ui/react";
-import { useFormik } from "formik";
-import { RSVPModel } from "../../firebase/models/rsvp";
-import { saveRSVP } from "../../firebase/rsvp";
 import { useState } from "react";
 
+const googleFormUrl =
+  "https://docs.google.com/forms/d/e/1FAIpQLScL_8qUyAsFjhzfY1vW4rgjL-PqvxwFoZ6q_yJ05raXYaf6SQ/viewform?usp=sf_link";
+
 export default function RSVP() {
-  const formik = useFormik<RSVPModel>({
-    initialValues: {
-      goingToAttend: "Si",
-      name: "",
-      phone: "",
-      numberOfPeople: 1,
-    },
-    onSubmit: async (values) => {
-      try {
-        await saveRSVP(values);
-        alert("Gracias Por Confirmar");
-        formik.resetForm();
-      } catch {
-        alert("Error: Favor de intentar despues");
-      }
-    },
+  const [formData, setFormData] = useState({
+    name: "",
+    phone: "",
+    numPeople: "",
+    assist: "",
   });
 
-  const [value, setValue] = useState("");
+  const [valueNum, setValueNum] = useState("");
+
+  const handleChangeNum = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setValueNum(event.target.value);
+
+    setFormData((prevState) => ({
+      ...prevState,
+      ["numPeople"]: event.target.value,
+    }));
+  };
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setValue(event.target.value);
+    const target = event.target;
+    const value = target.type === "radio" ? target.value : target.value;
+    const name = target.name;
+
+    setFormData((prevState) => ({
+      ...prevState,
+      [name]: value,
+    }));
+  };
+
+  const handleRadioChange = (value: string) => {
+    setFormData((prevState) => ({
+      ...prevState,
+      assist: value,
+    }));
+  };
+
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    const formUrl = `https://docs.google.com/forms/d/e/1FAIpQLScL_8qUyAsFjhzfY1vW4rgjL-PqvxwFoZ6q_yJ05raXYaf6SQ/formResponse`;
+    const formDataToSend = new FormData();
+
+    console.log(formData);
+
+    // Append data to FormData object
+    formDataToSend.append("entry.1978863469", formData.name);
+    formDataToSend.append("entry.926786837", formData.phone);
+    formDataToSend.append("entry.875104305", formData.numPeople);
+    formDataToSend.append("entry.2072923205", formData.assist);
+
+    // Send data to Google Form
+    try {
+      console.log(formDataToSend);
+      await fetch(formUrl, {
+        method: "POST",
+        body: formDataToSend,
+        mode: "no-cors", // to avoid CORS policy issues
+      });
+      alert("¡Gracias por tu confirmación!");
+    } catch (error) {
+      console.error("Error submitting form:", error);
+    }
   };
 
   const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
@@ -78,47 +117,48 @@ export default function RSVP() {
               Confirmación de Asistencia
             </Text>
             <br />
-            <Stack fontFamily={"body"} fontSize={"xl"}>
+            <br />
+            <Stack fontFamily={"body"}>
               <Text
                 fontWeight={400}
                 color={useColorModeValue("gray.800", "Black")}
                 as={"span"}
+                fontSize={"md"}
               >
-                ¡Queremos compartir este momento tan esperado contigo!
+                ¡Queremos compartir este momento tan esperado contigo! Por favor
+                ayúdanos confirmando tu asistencia.
               </Text>
               <Text
                 fontWeight={400}
                 color={useColorModeValue("gray.800", "Black")}
                 as={"span"}
-              >
-                Por favor ayúdanos confirmando tu asistencia.
-              </Text>
+                fontSize={"md"}
+              ></Text>
               <Text
                 fontWeight={400}
                 color={useColorModeValue("gray.800", "Black")}
                 as={"span"}
+                fontSize={"xl"}
               >
                 - No niños -
               </Text>
             </Stack>
           </Heading>
+          <br />
           <Box w={"100%"}>
-            <form onSubmit={formik.handleSubmit}>
+            <form onSubmit={handleSubmit}>
               <FormControl as="fieldset" isRequired>
                 <FormLabel as="legend">Asistencia</FormLabel>
                 <RadioGroup
-                  id="goingToAttend"
-                  name="goingToAttend"
+                  id="assist"
+                  name="assist"
                   defaultValue="Si"
-                  value={formik.values.goingToAttend}
+                  value={formData.assist}
+                  onChange={handleRadioChange}
                 >
                   <HStack spacing="24px" justify={"center"}>
-                    <Radio value="Si" onChange={formik.handleChange}>
-                      Si
-                    </Radio>
-                    <Radio value="No" onChange={formik.handleChange}>
-                      No
-                    </Radio>
+                    <Radio value="Si">Si</Radio>
+                    <Radio value="No">No</Radio>
                   </HStack>
                 </RadioGroup>
               </FormControl>
@@ -129,8 +169,8 @@ export default function RSVP() {
                   name="name"
                   type={"text"}
                   placeholder="Nombre"
-                  onChange={formik.handleChange}
-                  value={formik.values.name}
+                  onChange={handleChange}
+                  value={formData.name}
                 />
               </FormControl>
               <FormControl isRequired>
@@ -140,8 +180,8 @@ export default function RSVP() {
                   name="phone"
                   type={"phone"}
                   placeholder="Teléfono"
-                  onChange={formik.handleChange}
-                  value={formik.values.phone}
+                  onChange={handleChange}
+                  value={formData.phone}
                 />
               </FormControl>
               <FormControl isRequired>
@@ -154,9 +194,9 @@ export default function RSVP() {
                   type="number"
                   min={0}
                   max={10}
-                  onChange={handleChange}
+                  onChange={handleChangeNum}
                   onKeyDown={handleKeyDown}
-                  value={value}
+                  value={valueNum}
                 />
               </FormControl>
               <Button
