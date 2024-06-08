@@ -11,7 +11,7 @@ export default function SectionHeader(props: HeaderProps) {
         <Text
           fontWeight={400}
           fontSize={"5xl"}
-          color={useColorModeValue("white", "white")}
+          color={useColorModeValue("#000035", "white")}
           align="center"
         >
           {props.title}
