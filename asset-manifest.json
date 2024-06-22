@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/wedding-invitation/static/css/main.9987269e.css",
-    "main.js": "/wedding-invitation/static/js/main.a2884730.js",
+    "main.js": "/wedding-invitation/static/js/main.515644ed.js",
     "static/js/787.9b74c651.chunk.js": "/wedding-invitation/static/js/787.9b74c651.chunk.js",
     "static/media/amsterdam-four.ttf": "/wedding-invitation/static/media/amsterdam-four.64154e4485e61ccc7cd9.ttf",
     "static/media/birthstone-bounce-all-400-normal.woff": "/wedding-invitation/static/media/birthstone-bounce-all-400-normal.fe9265aa4e048db93c74.woff",
@@ -21,11 +21,11 @@
     "static/media/charm-vietnamese-400-normal.woff2": "/wedding-invitation/static/media/charm-vietnamese-400-normal.2f1d2aecf16b718fcf7a.woff2",
     "index.html": "/wedding-invitation/index.html",
     "main.9987269e.css.map": "/wedding-invitation/static/css/main.9987269e.css.map",
-    "main.a2884730.js.map": "/wedding-invitation/static/js/main.a2884730.js.map",
+    "main.515644ed.js.map": "/wedding-invitation/static/js/main.515644ed.js.map",
     "787.9b74c651.chunk.js.map": "/wedding-invitation/static/js/787.9b74c651.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.9987269e.css",
-    "static/js/main.a2884730.js"
+    "static/js/main.515644ed.js"
   ]
 }
