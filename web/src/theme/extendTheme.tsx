@@ -13,6 +13,7 @@ const theme = extendTheme({
     heading: `'Birthstone', handwriting`,
     body: `'Charm', handwriting`,
     names: `'Amsterdam-Four', handwriting`,
+    date: `'Montserrat', handwriting`,
   },
   initialColorMode: "light",
   useSystemColorMode: false,

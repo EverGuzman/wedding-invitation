@@ -1,4 +1,10 @@
-import { Heading, Stack, Text, useBreakpointValue } from "@chakra-ui/react";
+import {
+  Heading,
+  Stack,
+  Text,
+  useBreakpointValue,
+  Image,
+} from "@chakra-ui/react";
 import { useCallback } from "react";
 import PhotoAlbum, { PhotoProps } from "react-photo-album";
 import photos from "./photos";
@@ -61,7 +67,7 @@ export default function PictureGallery() {
         fontSize={{ base: "4xl", md: "5xl" }}
         mb={{ md: "5vw" }}
       >
-        <Text fontWeight={400}>Mejor juntos</Text>
+        <Text fontWeight={400}>Gracias por acompañarnos</Text>
       </Heading>
       <PhotoAlbum
         layout="masonry"
@@ -72,9 +78,7 @@ export default function PictureGallery() {
         renderPhoto={renderPhoto}
       />
       <Heading textAlign={"center"}>
-        <Text my={4} fontWeight={400}>
-          Gracias por acompañarnos
-        </Text>
+        <Image src={`${process.env.PUBLIC_URL}/pictures/logos/1-black.png`} />
       </Heading>
     </Stack>
   );

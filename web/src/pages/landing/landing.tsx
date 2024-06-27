@@ -1,4 +1,4 @@
-import { Flex, Image, Stack, Box } from "@chakra-ui/react";
+import { Flex, Image, Stack, Box, Text } from "@chakra-ui/react";
 import "../landing/landing.css";
 import FadeInText from "../../components/fadeInText/fadeInText";
 
@@ -60,7 +60,17 @@ export default function Landing() {
             bg="blackAlpha.600" // Semi-transparent background for better text visibility
             p="4"
           >
-            Melina & Ever
+            {/* <Image
+              width={{ base: "80%", lg: "50%" }}
+              src={`${process.env.PUBLIC_URL}/pictures/logos/1-white.png`}
+            ></Image> */}
+            <Stack direction={"column"}>
+              <Text>Melina & Ever</Text>
+              <br />
+              <Text fontSize={"xl"} fontFamily={"date"}>
+                1 5 . 0 9 . 2 0 2 4
+              </Text>
+            </Stack>
           </Box>
         </Box>
       </Flex>

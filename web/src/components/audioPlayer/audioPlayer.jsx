@@ -19,9 +19,10 @@ function AudioPlayer() {
   const [isMuted, setIsMuted] = useState(false);
   const [currentTime, setCurrentTime] = useState(0);
   const [duration, setDuration] = useState(0);
-  const [volume, setVolume] = useState(0.05); // Default volume to 10%
+  const [volume, setVolume] = useState(0.1); // Default volume to 10%
 
-  const MAX_VOLUME = 0.05; // Define maximum volume
+  const MAX_VOLUME = 0.1; // Define maximum volume
+  const OFFSET = 6; // Define the offset in seconds
 
   const togglePlayPause = () => {
     const audio = audioRef.current;
@@ -59,7 +60,7 @@ function AudioPlayer() {
     const audio = audioRef.current;
 
     const updateCurrentTime = () => {
-      setCurrentTime(audio.currentTime);
+      setCurrentTime(audio.currentTime - OFFSET);
       if (audio.currentTime === audio.duration) {
         audio.play();
         setCurrentTime(0);
@@ -70,12 +71,18 @@ function AudioPlayer() {
       setDuration(audio.duration);
     };
 
+    const setStartTime = () => {
+      audio.currentTime = 6; // Set the start time to 6 seconds
+    };
+
     audio.addEventListener("timeupdate", updateCurrentTime);
     audio.addEventListener("loadedmetadata", updateDuration);
+    audio.addEventListener("loadedmetadata", setStartTime);
 
     return () => {
       audio.removeEventListener("timeupdate", updateCurrentTime);
       audio.removeEventListener("loadedmetadata", updateDuration);
+      audio.removeEventListener("loadedmetadata", setStartTime);
     };
   }, []);
 
@@ -103,7 +110,6 @@ function AudioPlayer() {
                 <Icon as={PlayIcon} boxSize={6} color="#000035" />
               )}
             </Button>
-            {/* <Button onClick={toggleMute}>{isMuted ? "Unmute" : "Mute"}</Button> */}
             <Slider
               aria-label="time-slider"
               value={currentTime}
@@ -122,19 +128,6 @@ function AudioPlayer() {
               <SliderThumb boxSize={3} />
             </Slider>
             <Text className="duration">{formatTime(currentTime)}</Text>
-            {/* <Slider
-              aria-label="volume-slider"
-              value={volume}
-              min={0}
-              max={MAX_VOLUME} // Set max volume to 10%
-              step={0.01}
-              onChange={handleVolumeChange}
-            >
-              <SliderTrack bg="gray.200">
-                <SliderFilledTrack bg="blue.500" />
-              </SliderTrack>
-              <SliderThumb boxSize={4} />
-            </Slider> */}
           </HStack>
         </div>
       </div>

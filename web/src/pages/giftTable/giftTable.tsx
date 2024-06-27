@@ -31,7 +31,7 @@ export default function GiftTable() {
         <Box
           height={{
             lg: "500px",
-            base: "300px", // Increased height for a better zoom effect on mobile
+            base: "270px", // Increased height for a better zoom effect on mobile
           }}
           overflow="hidden"
           position="relative"
@@ -50,22 +50,21 @@ export default function GiftTable() {
             position="absolute"
             top="0"
             left="0"
-            right="0"
-            bottom={{ lg: "0", base: "0" }}
-            bg="rgba(255, 255, 255, 0.6)" // White background with 60% opacity
+            right={{ lg: "0", base: "150" }}
+            bottom="0"
           >
             <Box
-              bg={"transparent"}
-              p={8}
-              w={{ base: "100vw", md: "40vw" }}
+              bg="rgba(255, 255, 255, 0.3)"
+              p={{ lg: 6, base: 1 }}
+              w={{ base: "60vw", lg: "20vw" }}
               textAlign={"center"}
             >
               <Stack spacing={3} align={"center"} justify={"center"}>
                 <Text
                   fontSize={{ lg: "2xl", base: "xl" }}
                   fontWeight={500}
-                  width="50%"
-                  color={useColorModeValue("#000035", "Black")}
+                  width="70%"
+                  color={useColorModeValue("black", "Black")}
                 >
                   ¡Gracias por formar parte de nuestro inicio como familia!
                 </Text>
@@ -73,12 +72,12 @@ export default function GiftTable() {
                   <EmailIcon
                     w={12}
                     h={12}
-                    color={useColorModeValue("#000035", "Black")}
+                    color={useColorModeValue("black", "Black")}
                   />
                   {/* <EmailIcon
                 w={12}
                 h={12}
-                color={useColorModeValue("#000035", "Black")}
+                color={useColorModeValue("white", "Black")}
               /> */}
                   {/* <Text
                 fontSize={"md"}
@@ -91,8 +90,8 @@ export default function GiftTable() {
                 <Text
                   fontSize={{ lg: "2xl", base: "xl" }}
                   fontWeight={500}
-                  width="50%"
-                  color={useColorModeValue("#000035", "Black")}
+                  width="70%"
+                  color={useColorModeValue("black", "Black")}
                 >
                   Tendremos una caja para sobres el día del evento.
                 </Text>
