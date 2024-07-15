@@ -77,9 +77,6 @@ export default function PictureGallery() {
         photos={photos}
         renderPhoto={renderPhoto}
       />
-      <Heading textAlign={"center"}>
-        <Image src={`${process.env.PUBLIC_URL}/pictures/logos/1-black.png`} />
-      </Heading>
     </Stack>
   );
 }

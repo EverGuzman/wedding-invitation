@@ -15,7 +15,7 @@ const targetDate = new Date("2024-09-15T16:00:00");
 export default function SaveTheDate() {
   const imageUrl = useBreakpointValue({
     lg: `${process.env.PUBLIC_URL}/pictures/CASUAL-40.jpg`,
-    base: `${process.env.PUBLIC_URL}/pictures/CASUAL-40.webp`,
+    base: `${process.env.PUBLIC_URL}/pictures/CASUAL-43.jpg`,
   });
 
   const objectPosition = useBreakpointValue({

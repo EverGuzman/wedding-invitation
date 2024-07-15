@@ -11,6 +11,7 @@ const fadein = keyframes`
 
 export type FadeInTextProps = {
   text: string;
+  fontSize: string;
 };
 
 export default function FadeInText(props: FadeInTextProps) {
@@ -29,7 +30,7 @@ export default function FadeInText(props: FadeInTextProps) {
         {lines.map((line) => (
           <Text
             key={line.key}
-            fontSize={{ base: "md", md: "2xl" }}
+            fontSize={props.fontSize}
             animation={`${fadein} ${line.animation}s`}
           >
             {line.value}

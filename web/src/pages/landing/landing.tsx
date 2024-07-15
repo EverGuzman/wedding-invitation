@@ -1,15 +1,14 @@
-import { Flex, Image, Stack, Box, Text } from "@chakra-ui/react";
+import React from "react";
+import { Flex, Image, Stack, Box, Text, Icon, Center } from "@chakra-ui/react";
 import "../landing/landing.css";
-import FadeInText from "../../components/fadeInText/fadeInText";
+import { PlayIcon, PauseIcon } from "../../components/icons/icons";
+import { useAudio } from "../../contexts/AudioContext";
 
 const targetDate: Date = new Date("2024-09-15T16:00:00");
-// const text: string = `El destino nos puso en el mismo camino y ahora caminaremos juntos hasta el final`;
-const text1: string = `Con la bendición de Dios y de nuestros padres
-Hector I. Pérez Trujillo y Ma. Imelda Muñóz Salazar
-Everardo Guzmán Leal y Sandra Gpe. López Aranda
-Tenemos el honor de invitarlos a la celebración de nuestro matrimonio`;
 
 export default function Landing() {
+  const { isPlaying, togglePlayPause } = useAudio();
+
   return (
     <Stack
       direction={"column"}
@@ -60,22 +59,33 @@ export default function Landing() {
             bg="blackAlpha.600" // Semi-transparent background for better text visibility
             p="4"
           >
-            {/* <Image
-              width={{ base: "80%", lg: "50%" }}
-              src={`${process.env.PUBLIC_URL}/pictures/logos/1-white.png`}
-            ></Image> */}
-            <Stack direction={"column"}>
+            <Stack direction={"column"} align="center" justify="center">
               <Text>Melina & Ever</Text>
-              <br />
               <Text fontSize={"xl"} fontFamily={"date"}>
                 1 5 . 0 9 . 2 0 2 4
               </Text>
+              <Center>
+                <Box
+                  boxSize="35px"
+                  bg="whiteAlpha.600"
+                  borderRadius="full"
+                  display="flex"
+                  alignItems="center"
+                  justifyContent="center"
+                  cursor="pointer"
+                  onClick={togglePlayPause}
+                >
+                  <Icon
+                    as={isPlaying ? PauseIcon : PlayIcon}
+                    boxSize={6}
+                    color="black"
+                  />
+                </Box>
+              </Center>
             </Stack>
           </Box>
         </Box>
       </Flex>
-
-      <FadeInText text={text1}></FadeInText>
     </Stack>
   );
 }

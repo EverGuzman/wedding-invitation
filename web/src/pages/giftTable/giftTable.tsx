@@ -61,7 +61,7 @@ export default function GiftTable() {
             >
               <Stack spacing={3} align={"center"} justify={"center"}>
                 <Text
-                  fontSize={{ lg: "2xl", base: "xl" }}
+                  fontSize={{ lg: "2xl", base: "lg" }}
                   fontWeight={500}
                   width="70%"
                   color={useColorModeValue("black", "Black")}
@@ -88,7 +88,7 @@ export default function GiftTable() {
               </Text> */}
                 </Stack>
                 <Text
-                  fontSize={{ lg: "2xl", base: "xl" }}
+                  fontSize={{ lg: "2xl", base: "lg" }}
                   fontWeight={500}
                   width="70%"
                   color={useColorModeValue("black", "Black")}

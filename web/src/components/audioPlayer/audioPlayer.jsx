@@ -10,45 +10,36 @@ import {
   Icon,
 } from "@chakra-ui/react";
 import "./audioPlayer.css"; // Assuming your styles are in this file
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { PlayIcon, PauseIcon } from "../icons/icons";
+import { useAudio } from "../../contexts/AudioContext";
 
 function AudioPlayer() {
-  const audioRef = useRef(null);
-  const [isPlaying, setIsPlaying] = useState(false);
-  const [isMuted, setIsMuted] = useState(false);
+  const { audioRef, isPlaying, togglePlayPause } = useAudio();
+  // const [isMuted, setIsMuted] = useState(false);
   const [currentTime, setCurrentTime] = useState(0);
   const [duration, setDuration] = useState(0);
-  const [volume, setVolume] = useState(0.1); // Default volume to 10%
+  // const [volume, setVolume] = useState(0.02); // Default volume to 10%
 
-  const MAX_VOLUME = 0.1; // Define maximum volume
+  // const MAX_VOLUME = 0.1; // Define maximum volume
   const OFFSET = 6; // Define the offset in seconds
 
-  const togglePlayPause = () => {
-    const audio = audioRef.current;
-    audio.volume = volume; // Ensure the volume is set to the current state value
+  // const toggleMute = () => {
+  //   const audio = audioRef.current;
+  //   if (audio) {
+  //     audio.muted = !audio.muted;
+  //     setIsMuted(!isMuted);
+  //   }
+  // };
 
-    if (audio.paused) {
-      audio.play();
-      setIsPlaying(true);
-    } else {
-      audio.pause();
-      setIsPlaying(false);
-    }
-  };
-
-  const toggleMute = () => {
-    const audio = audioRef.current;
-    audio.muted = !audio.muted;
-    setIsMuted(!isMuted);
-  };
-
-  const handleVolumeChange = (value) => {
-    const audio = audioRef.current;
-    const newVolume = Math.min(value, MAX_VOLUME); // Ensure volume doesn't exceed MAX_VOLUME
-    audio.volume = newVolume;
-    setVolume(newVolume);
-  };
+  // const handleVolumeChange = (value) => {
+  //   const audio = audioRef.current;
+  //   if (audio) {
+  //     const newVolume = Math.min(value, MAX_VOLUME); // Ensure volume doesn't exceed MAX_VOLUME
+  //     audio.volume = newVolume;
+  //     setVolume(newVolume);
+  //   }
+  // };
 
   const formatTime = (time) => {
     const minutes = Math.floor(time / 60);
@@ -60,31 +51,41 @@ function AudioPlayer() {
     const audio = audioRef.current;
 
     const updateCurrentTime = () => {
-      setCurrentTime(audio.currentTime - OFFSET);
-      if (audio.currentTime === audio.duration) {
-        audio.play();
-        setCurrentTime(0);
+      if (audio) {
+        setCurrentTime(audio.currentTime - OFFSET);
+        if (audio.currentTime === audio.duration) {
+          audio.play();
+          setCurrentTime(0);
+        }
       }
     };
 
     const updateDuration = () => {
-      setDuration(audio.duration);
+      if (audio) {
+        setDuration(audio.duration);
+      }
     };
 
     const setStartTime = () => {
-      audio.currentTime = 6; // Set the start time to 6 seconds
+      if (audio) {
+        audio.currentTime = OFFSET; // Set the start time to 6 seconds
+      }
     };
 
-    audio.addEventListener("timeupdate", updateCurrentTime);
-    audio.addEventListener("loadedmetadata", updateDuration);
-    audio.addEventListener("loadedmetadata", setStartTime);
+    if (audio) {
+      audio.addEventListener("timeupdate", updateCurrentTime);
+      audio.addEventListener("loadedmetadata", updateDuration);
+      audio.addEventListener("loadedmetadata", setStartTime);
+    }
 
     return () => {
-      audio.removeEventListener("timeupdate", updateCurrentTime);
-      audio.removeEventListener("loadedmetadata", updateDuration);
-      audio.removeEventListener("loadedmetadata", setStartTime);
+      if (audio) {
+        audio.removeEventListener("timeupdate", updateCurrentTime);
+        audio.removeEventListener("loadedmetadata", updateDuration);
+        audio.removeEventListener("loadedmetadata", setStartTime);
+      }
     };
-  }, []);
+  }, [audioRef]);
 
   return (
     <Box bg="transparent" borderRadius="md">
@@ -113,12 +114,14 @@ function AudioPlayer() {
             <Slider
               aria-label="time-slider"
               value={currentTime}
-              min={0}
+              min={6}
               max={duration}
               onChange={(val) => {
                 const audio = audioRef.current;
-                audio.currentTime = val;
-                setCurrentTime(val);
+                if (audio) {
+                  audio.currentTime = val;
+                  setCurrentTime(val);
+                }
               }}
               width={"50px"}
             >
