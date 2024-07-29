@@ -1,11 +1,10 @@
-import { ColorModeScript } from "@chakra-ui/react";
 import * as React from "react";
 import * as ReactDOM from "react-dom/client";
 import { App } from "./App";
 import reportWebVitals from "./reportWebVitals";
 import * as serviceWorker from "./serviceWorker";
-import theme from "./theme/extendTheme";
-import "./styles/fonts.css";
+import "./styles/fonts.css"; // Ensure your fonts are loaded
+import "./styles/styles.css"; // Import the light mode styles
 
 const container = document.getElementById("root");
 if (!container) throw new Error("Failed to find the root element");
@@ -13,7 +12,6 @@ const root = ReactDOM.createRoot(container);
 
 root.render(
   <React.StrictMode>
-    <ColorModeScript initialColorMode={theme.config.initalColorMode} />
     <App />
   </React.StrictMode>
 );

@@ -8,10 +8,10 @@ import {
   Input,
   Radio,
   RadioGroup,
-  Select,
   Stack,
   Text,
   useColorModeValue,
+  useToast,
 } from "@chakra-ui/react";
 import { useState } from "react";
 
@@ -19,6 +19,7 @@ const googleFormUrl =
   "https://docs.google.com/forms/d/e/1FAIpQLScL_8qUyAsFjhzfY1vW4rgjL-PqvxwFoZ6q_yJ05raXYaf6SQ/viewform?usp=sf_link";
 
 export default function RSVP() {
+  const toast = useToast();
   const [formData, setFormData] = useState({
     name: "",
     phone: "",
@@ -60,8 +61,6 @@ export default function RSVP() {
     const formUrl = `https://docs.google.com/forms/d/e/1FAIpQLScL_8qUyAsFjhzfY1vW4rgjL-PqvxwFoZ6q_yJ05raXYaf6SQ/formResponse`;
     const formDataToSend = new FormData();
 
-    console.log(formData);
-
     // Append data to FormData object
     formDataToSend.append("entry.1978863469", formData.name);
     formDataToSend.append("entry.926786837", formData.phone);
@@ -70,15 +69,27 @@ export default function RSVP() {
 
     // Send data to Google Form
     try {
-      console.log(formDataToSend);
       await fetch(formUrl, {
         method: "POST",
         body: formDataToSend,
         mode: "no-cors", // to avoid CORS policy issues
       });
-      alert("¡Gracias por tu confirmación!");
+      toast({
+        title: "¡Gracias por tu confirmación!",
+        description: "Hemos recibido tu respuesta.",
+        status: "success",
+        duration: 5000,
+        isClosable: true,
+      });
     } catch (error) {
       console.error("Error submitting form:", error);
+      toast({
+        title: "Error",
+        description: "Hubo un problema al enviar tu respuesta.",
+        status: "error",
+        duration: 5000,
+        isClosable: true,
+      });
     }
   };
 
@@ -215,6 +226,11 @@ export default function RSVP() {
               </Button>
             </form>
           </Box>
+          <Text fontSize={"xs"} fontFamily={"sans-serif"} fontWeight={"light"}>
+            Nota: Te agradeceríamos que solo respondas cuando tu decisión sea
+            definitiva. Fecha límite: 28 de agosto de 2024. ¡Gracias!
+          </Text>
+          <br />
         </Stack>
       </Stack>
     </Stack>

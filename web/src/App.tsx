@@ -1,4 +1,4 @@
-import { ChakraProvider } from "@chakra-ui/react";
+import { ChakraProvider, Box } from "@chakra-ui/react";
 import "@fontsource/birthstone";
 import "@fontsource/birthstone-bounce";
 import "@fontsource/charm";
@@ -22,6 +22,8 @@ import TextAfterLanding from "./pages/textAfterLanding/textAfterLanding";
 import { AudioProvider } from "./contexts/AudioContext";
 
 export const App = () => {
+  const backgroundImageUrl = `${process.env.PUBLIC_URL}/pictures/background/smooth-white-stucco-wall.jpg`;
+
   const sections = [
     useRef<HTMLDivElement>(null),
     useRef<HTMLDivElement>(null),
@@ -32,6 +34,8 @@ export const App = () => {
     useRef<HTMLDivElement>(null),
     useRef<HTMLDivElement>(null),
   ];
+
+  const thresholds = [0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.025, 0.1]; // Specific thresholds for each element
 
   const [visibleSections, setVisibleSections] = useState(
     new Array(sections.length).fill(false)
@@ -45,70 +49,77 @@ export const App = () => {
     });
   };
 
-  useIntersectionObserver(sections, setVisible);
+  useIntersectionObserver(sections, thresholds, setVisible);
 
   return (
-    <ChakraProvider theme={theme}>
+    <ChakraProvider theme={theme(backgroundImageUrl)}>
       <ForceLightMode>
         <Router>
-          <AudioProvider>
-            <NavigationBar />
+          <Box
+            backgroundImage="url('/pictures/background/5578661.jpg')"
+            backgroundPosition="center"
+            backgroundRepeat="no-repeat"
+            backgroundSize="cover"
+          >
+            <AudioProvider>
+              <NavigationBar />
+              <div
+                ref={sections[0]}
+                className={visibleSections[0] ? "fade-in" : "fade-out"}
+              >
+                <Landing />
+              </div>
+            </AudioProvider>
+            <br />
             <div
-              ref={sections[0]}
-              className={visibleSections[0] ? "fade-in" : "fade-out"}
+              ref={sections[1]}
+              className={visibleSections[1] ? "fade-in" : "fade-out"}
             >
-              <Landing />
+              <TextAfterLanding />
             </div>
-          </AudioProvider>
-          <br />
-          <div
-            ref={sections[1]}
-            className={visibleSections[1] ? "fade-in" : "fade-out"}
-          >
-            <TextAfterLanding />
-          </div>
-          <br />
-          <div
-            ref={sections[2]}
-            className={visibleSections[2] ? "fade-in" : "fade-out"}
-          >
-            <SaveTheDate />
-          </div>
-          <br />
-          <div
-            ref={sections[3]}
-            className={visibleSections[3] ? "fade-in" : "fade-out"}
-          >
-            <EventDetails />
-          </div>
-          <br />
-          <div
-            ref={sections[4]}
-            className={visibleSections[4] ? "fade-in" : "fade-out"}
-          >
-            <GiftTable />
-          </div>
-          <br />
-          <div
-            ref={sections[5]}
-            className={visibleSections[5] ? "fade-in" : "fade-out"}
-          >
-            <RSVP />
-          </div>
-          <br />
-          <div
-            ref={sections[6]}
-            className={visibleSections[6] ? "fade-in" : "fade-out"}
-          >
-            <PictureGallery />
-          </div>
-          <br />
-          <div
-            ref={sections[7]}
-            className={visibleSections[7] ? "fade-in" : "fade-out"}
-          >
-            <EndLogo />
-          </div>
+            <br />
+            <div
+              ref={sections[2]}
+              className={visibleSections[2] ? "fade-in" : "fade-out"}
+            >
+              <SaveTheDate />
+            </div>
+            <br />
+            <div
+              ref={sections[3]}
+              className={visibleSections[3] ? "fade-in" : "fade-out"}
+            >
+              <EventDetails />
+            </div>
+            <br />
+            <div
+              ref={sections[4]}
+              className={visibleSections[4] ? "fade-in" : "fade-out"}
+            >
+              <GiftTable />
+            </div>
+            <br />
+            <div
+              ref={sections[5]}
+              className={visibleSections[5] ? "fade-in" : "fade-out"}
+            >
+              <RSVP />
+            </div>
+            <br />
+            <div
+              ref={sections[6]}
+              className={visibleSections[6] ? "fade-in" : "fade-out"}
+            >
+              <PictureGallery />
+            </div>
+            <br />
+            <div
+              ref={sections[7]}
+              className={visibleSections[7] ? "fade-in" : "fade-out"}
+            >
+              <EndLogo />
+            </div>
+          </Box>
         </Router>
       </ForceLightMode>
     </ChakraProvider>

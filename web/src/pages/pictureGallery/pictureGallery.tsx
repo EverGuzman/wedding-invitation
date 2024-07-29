@@ -3,13 +3,22 @@ import {
   Stack,
   Text,
   useBreakpointValue,
-  Image,
+  Spinner,
 } from "@chakra-ui/react";
-import { useCallback } from "react";
+import { useCallback, useState, useEffect } from "react";
 import PhotoAlbum, { PhotoProps } from "react-photo-album";
-import photos from "./photos";
+import usePhotos from "./photos"; // Corrected import
 
 export default function PictureGallery() {
+  const photos = usePhotos();
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    if (photos.length > 0) {
+      setLoading(false);
+    }
+  }, [photos]);
+
   const columns = useBreakpointValue(
     {
       base: 1,
@@ -22,8 +31,8 @@ export default function PictureGallery() {
   );
   const spacing = useBreakpointValue(
     {
-      base: 15,
-      md: 30,
+      base: 5,
+      md: 15,
     },
     {
       fallback: "base",
@@ -31,8 +40,8 @@ export default function PictureGallery() {
   );
   const padding = useBreakpointValue(
     {
-      base: 15,
-      md: 30,
+      base: 5,
+      md: 15,
     },
     {
       fallback: "base",
@@ -45,21 +54,22 @@ export default function PictureGallery() {
         style={{
           ...style,
           backgroundColor: "white",
-          borderRadius: "4px",
-          boxShadow:
-            "0px 3px 3px -2px rgb(0 0 0 / 20%), 0px 3px 4px 0px rgb(0 0 0 / 14%), 0px 1px 8px 0px rgb(0 0 0 / 12%)",
-          transition: "box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms",
+          borderRadius: "2px",
+          // boxShadow:
+          //   "0px 3px 3px -2px rgb(0 0 0 / 20%), 0px 3px 4px 0px rgb(0 0 0 / 14%), 0px 1px 8px 0px rgb(0 0 0 / 12%)",
+          // transition: "box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms",
         }}
         {...rest}
       />
     ),
     []
   );
+
   return (
     <Stack
       w={"full"}
       id="picture-gallery"
-      p={{ base: 5, md: 10 }}
+      p={{ base: 1, md: 5 }}
       alignContent={"center"}
     >
       <Heading
@@ -69,14 +79,18 @@ export default function PictureGallery() {
       >
         <Text fontWeight={400}>Gracias por acompañarnos</Text>
       </Heading>
-      <PhotoAlbum
-        layout="masonry"
-        columns={columns}
-        spacing={spacing}
-        padding={padding}
-        photos={photos}
-        renderPhoto={renderPhoto}
-      />
+      {loading ? (
+        <Spinner />
+      ) : (
+        <PhotoAlbum
+          layout="masonry"
+          columns={columns}
+          spacing={spacing}
+          padding={padding}
+          photos={photos}
+          renderPhoto={renderPhoto}
+        />
+      )}
     </Stack>
   );
 }

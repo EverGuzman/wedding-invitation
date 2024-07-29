@@ -91,6 +91,16 @@ export default function InfoCardImage(props: InfoCardImageProps) {
             <br />
           </Heading>
           <Box textAlign={"center"}>
+            {/* <Text
+              fontSize={"lg"}
+              fontWeight={400}
+              color={useColorModeValue("gray.600", "Black")}
+              mb={"1"}
+            >
+              Te extendemos la invitación porque nos encantaría que seas parte
+              de nuestra ceremonia civil.
+            </Text>
+            <br /> */}
             <Text
               fontSize={"xl"}
               fontWeight={400}

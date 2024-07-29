@@ -6,6 +6,7 @@ import {
   Text,
   Image,
   useColorModeValue,
+  Button,
 } from "@chakra-ui/react";
 import InfoCardImage, {
   InfoCardImageProps,
@@ -14,6 +15,7 @@ import InfoCardImageDouble, {
   InfoCardImageDoubleProps,
 } from "../../components/infoCardImageDouble/infoCardImageDouble";
 import DividerSectionHeader from "../../components/sectionHeader/dividerSectionHeader/dividerSectionHeader";
+import InfoCard from "../../components/infoCard/infoCard";
 
 const churchInfo: InfoCardImageProps = {
   type: "right",
@@ -29,11 +31,11 @@ const civilInfo: InfoCardImageProps = {
   type: "left",
   title: "Civil",
   description: "La Cantera Eventos",
-  timeDescription: "6:30pm",
+  timeDescription: "6:20pm",
   locationDescription:
     "Carr Nacional 2700, Valle de Cristal, 64986 Monterrey, N.L.",
   link: "https://maps.app.goo.gl/DqhbbiNQbHyxyhFc7",
-  imageSrc: `${process.env.PUBLIC_URL}/pictures/details/Civil.jpg`,
+  imageSrc: `${process.env.PUBLIC_URL}/icons/civil_icon.png`,
 };
 
 const receptionInfo: InfoCardImageProps = {
@@ -47,6 +49,17 @@ const receptionInfo: InfoCardImageProps = {
   imageSrc: `${process.env.PUBLIC_URL}/icons/reception-icon.png`,
 };
 
+const dressCodeInfo: InfoCardImageProps = {
+  type: "right",
+  title: "Código de Vestimenta",
+  description: "Formal",
+  timeDescription: "",
+  locationDescription:
+    "En el siguiente link podrás encontrar el grupo de descuento para Elite Tuxedo",
+  link: "https://maps.app.goo.gl/DqhbbiNQbHyxyhFc7",
+  imageSrc: `${process.env.PUBLIC_URL}/pictures/details/dresscode.png`,
+};
+
 export default function EventDetails() {
   return (
     <Stack id="event-details" w={"full"} p={"20pt"}>
@@ -54,6 +67,9 @@ export default function EventDetails() {
       <Stack spacing={10} p={{ base: undefined, md: 10 }}>
         <InfoCardImage {...churchInfo}></InfoCardImage>
         <InfoCardImage {...receptionInfo}></InfoCardImage>
+        {/* <InfoCardImage {...civilInfo}></InfoCardImage> */}
+
+        {/* <InfoCardImage {...dressCodeInfo}></InfoCardImage> */}
         <Stack
           direction={{ base: "column", md: "row" }}
           p={2}
@@ -96,6 +112,23 @@ export default function EventDetails() {
                     width="35%"
                   />
                 </Flex>
+              </Box>
+              <br />
+              <Box textAlign={"center"}>
+                <Text
+                  fontSize={"lg"}
+                  fontWeight={800}
+                  color={useColorModeValue("gray.600", "Black")}
+                >
+                  Sé parte del grupo de descuento de Elite Tuxedo.
+                </Text>
+                <Button
+                  as="a"
+                  href={`${process.env.PUBLIC_URL}/pictures/details/EliteTuxedoGroup.jpeg`}
+                  download="EliteTuxedoGroup.jpeg"
+                >
+                  Descarga aquí
+                </Button>
               </Box>
             </Stack>
           </Flex>

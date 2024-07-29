@@ -25,7 +25,7 @@ import React, { useState, useEffect, useRef } from "react";
 import AudioPlayer from "../../components/audioPlayer/audioPlayer"; // Adjust the path as necessary
 
 export default function NavigationBar() {
-  const { isOpen, onToggle } = useDisclosure();
+  const { isOpen, onToggle, onClose } = useDisclosure();
 
   const [showBar, setShowBar] = useState(true);
   const lastScrollY = useRef(0);
@@ -35,6 +35,7 @@ export default function NavigationBar() {
       if (typeof window !== "undefined") {
         if (window.scrollY > lastScrollY.current && window.scrollY > 100) {
           setShowBar(false);
+          onClose(); // Close mobile menu when navBar hides
         } else {
           setShowBar(true);
         }
@@ -47,10 +48,10 @@ export default function NavigationBar() {
     return () => {
       window.removeEventListener("scroll", controlNavbar);
     };
-  }, []);
+  }, [onClose]);
 
   return (
-    <Box>
+    <Box position="fixed" top="0" left="0" right="0" zIndex="banner">
       <Flex
         bg="rgba(255, 255, 255, 0.3)"
         minH={"60px"}
@@ -60,11 +61,6 @@ export default function NavigationBar() {
         borderStyle={"solid"}
         borderColor={useColorModeValue("blackAlpha.200", "gray.900")}
         align={"center"}
-        position="fixed" // Makes the navbar fixed
-        top="0"
-        left="0"
-        right="0"
-        zIndex="banner" // Ensures it stays on top of other content
         width="full" // Ensures it spans the full width of the viewport
         transform={showBar ? "translateY(0)" : "translateY(-100%)"}
         transition="transform 0.2s ease-in-out"
@@ -103,7 +99,7 @@ export default function NavigationBar() {
       </Flex>
 
       <Collapse in={isOpen} animateOpacity>
-        <MobileNav />
+        <MobileNav onClose={onClose} />
       </Collapse>
     </Box>
   );
@@ -199,29 +195,49 @@ const DesktopSubNav = ({ label, href, subLabel }: NavItem) => {
   );
 };
 
-const MobileNav = () => {
+interface MobileNavProps {
+  onClose: () => void;
+}
+
+const MobileNav = ({ onClose }: MobileNavProps) => {
   return (
     <Stack
-      bg={useColorModeValue("white", "gray.800")}
+      bg={useColorModeValue("rgba(255, 255, 255, 0.3)", "gray.800")}
       p={4}
       display={{ md: "none" }}
+      zIndex="banner" // Ensure the zIndex is set high
     >
       {NAV_ITEMS.map((navItem) => (
-        <MobileNavItem key={navItem.label} {...navItem} />
+        <MobileNavItem key={navItem.label} {...navItem} onClose={onClose} />
       ))}
     </Stack>
   );
 };
 
-const MobileNavItem = ({ label, children, href }: NavItem) => {
+interface MobileNavItemProps extends NavItem {
+  onClose: () => void;
+}
+
+const MobileNavItem = ({
+  label,
+  children,
+  href,
+  onClose,
+}: MobileNavItemProps) => {
   const { isOpen, onToggle } = useDisclosure();
 
+  const handleItemClick = () => {
+    if (children) {
+      onToggle();
+    } else {
+      onClose();
+    }
+  };
+
   return (
-    <Stack spacing={4} onClick={children && onToggle}>
+    <Stack spacing={4} onClick={handleItemClick}>
       <Flex
         py={2}
-        // as={Link}
-        // href={href ?? "#"}
         justify={"space-between"}
         align={"center"}
         _hover={{
@@ -265,6 +281,7 @@ const MobileNavItem = ({ label, children, href }: NavItem) => {
                 as={HashLink}
                 smooth
                 to={href ?? "#"}
+                onClick={onClose}
               >
                 {child.label}
               </Link>
