@@ -230,7 +230,6 @@ export default function RSVP() {
             Nota: Te agradeceríamos que solo respondas cuando tu decisión sea
             definitiva. Fecha límite: 28 de agosto de 2024. ¡Gracias!
           </Text>
-          <br />
         </Stack>
       </Stack>
     </Stack>

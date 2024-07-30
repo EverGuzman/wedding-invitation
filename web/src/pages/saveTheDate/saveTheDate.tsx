@@ -15,12 +15,14 @@ const targetDate = new Date("2024-09-15T16:00:00");
 
 export default function SaveTheDate() {
   const imageUrl = useBreakpointValue({
-    lg: `${process.env.PUBLIC_URL}/pictures/CASUAL-40.jpg`,
+    xxl: `${process.env.PUBLIC_URL}/pictures/CASUAL-40.jpg`,
     base: `${process.env.PUBLIC_URL}/pictures/CASUAL-61.jpg`,
   });
 
   const objectPosition = useBreakpointValue({
-    lg: "center -800px",
+    xxl: "center -800px",
+    xl2: "center -300px",
+    lg: "center -200px",
     base: "center 0px",
   });
 
@@ -47,7 +49,9 @@ export default function SaveTheDate() {
       <Flex rounded={"lg"} pos={"relative"} justify={"center"}>
         <Box
           height={{
-            lg: "500px", // Increased height for a better zoom effect on mobile
+            xl: "400px",
+            lg: "400px",
+            base: "280px", // Increased height for a better zoom effect on mobile
           }}
           overflow="hidden"
           position="relative"
@@ -55,7 +59,7 @@ export default function SaveTheDate() {
           <Image
             alt="Melina y Ever"
             src={imageUrl}
-            objectFit={{ lg: "cover", base: "cover" }}
+            objectFit="cover"
             objectPosition={objectPosition}
             transition="0.2s ease-in-out"
           />

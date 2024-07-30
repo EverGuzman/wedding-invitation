@@ -31,7 +31,7 @@ export default function GiftTable() {
         <Box
           height={{
             lg: "500px",
-            base: "270px", // Increased height for a better zoom effect on mobile
+            base: "250px", // Increased height for a better zoom effect on mobile
           }}
           overflow="hidden"
           position="relative"

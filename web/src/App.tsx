@@ -22,7 +22,8 @@ import TextAfterLanding from "./pages/textAfterLanding/textAfterLanding";
 import { AudioProvider } from "./contexts/AudioContext";
 
 export const App = () => {
-  const backgroundImageUrl = `${process.env.PUBLIC_URL}/pictures/background/smooth-white-stucco-wall.jpg`;
+  const backgroundImageUrl = "";
+  // const backgroundImageUrl = `${process.env.PUBLIC_URL}/pictures/background/smooth-white-stucco-wall.jpg`;
 
   const sections = [
     useRef<HTMLDivElement>(null),
@@ -35,7 +36,7 @@ export const App = () => {
     useRef<HTMLDivElement>(null),
   ];
 
-  const thresholds = [0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.025, 0.1]; // Specific thresholds for each element
+  const thresholds = [0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.01, 0.1]; // Specific thresholds for each element
 
   const [visibleSections, setVisibleSections] = useState(
     new Array(sections.length).fill(false)
@@ -52,7 +53,7 @@ export const App = () => {
   useIntersectionObserver(sections, thresholds, setVisible);
 
   return (
-    <ChakraProvider theme={theme(backgroundImageUrl)}>
+    <ChakraProvider theme={theme}>
       <ForceLightMode>
         <Router>
           <Box

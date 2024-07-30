@@ -1,5 +1,6 @@
 import {
   Box,
+  Button,
   Flex,
   Heading,
   Image,
@@ -22,6 +23,8 @@ export type InfoCardImageProps = {
 export type InfoCardTypes = "right" | "left";
 
 export default function InfoCardImage(props: InfoCardImageProps) {
+  const mapaicon = `${process.env.PUBLIC_URL}/icons/mapa_icon2.png`;
+
   return (
     <Stack
       direction={{
@@ -125,17 +128,22 @@ export default function InfoCardImage(props: InfoCardImageProps) {
             >
               {props.locationDescription}
             </Text>
-            <Text
-              fontSize={"2xl"}
-              fontWeight={400}
+            <Box
+              fontSize="xl"
               color={useColorModeValue("gray.600", "white")}
-              mb={"1"}
+              mb="1"
               as={Link}
               href={props.link}
               isExternal
+              display="flex"
+              justifyContent="center"
+              alignItems="center"
             >
-              Ver ubicación
-            </Text>
+              <Text textDecoration="underline" mr="2">
+                Ubicación
+              </Text>
+              <Image src={mapaicon} width="10%" />
+            </Box>
           </Box>
         </Stack>
       </Flex>
