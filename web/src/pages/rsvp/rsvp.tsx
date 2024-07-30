@@ -167,7 +167,7 @@ export default function RSVP() {
                   value={formData.assist}
                   onChange={handleRadioChange}
                 >
-                  <HStack spacing="24px" justify={"center"}>
+                  <HStack spacing="35px" justify={"center"}>
                     <Radio value="Si">Si</Radio>
                     <Radio value="No">No</Radio>
                   </HStack>

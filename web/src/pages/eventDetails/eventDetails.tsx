@@ -122,13 +122,15 @@ export default function EventDetails() {
                 >
                   Sé parte del grupo de descuento de Elite Tuxedo.
                 </Text>
-                <Button
+                <Text
                   as="a"
                   href={`${process.env.PUBLIC_URL}/pictures/details/EliteTuxedoGroup.jpeg`}
                   download="EliteTuxedoGroup.jpeg"
+                  color={useColorModeValue("gray.600", "Black")}
+                  textDecor={"underline"}
                 >
                   Descarga aquí
-                </Button>
+                </Text>
               </Box>
             </Stack>
           </Flex>
