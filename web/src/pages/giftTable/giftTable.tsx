@@ -59,21 +59,31 @@ export default function GiftTable() {
               w={{ base: "60vw", lg: "20vw" }}
               textAlign={"center"}
             >
-              <Stack spacing={3} align={"center"} justify={"center"}>
+              <Stack spacing={1} align={"center"} justify={"center"}>
                 <Text
-                  fontSize={{ lg: "2xl", base: "lg" }}
+                  fontSize={{ lg: "2xl", base: "md" }}
                   fontWeight={500}
-                  width="70%"
+                  width="90%"
                   color={useColorModeValue("black", "Black")}
                 >
                   ¡Gracias por formar parte de nuestro inicio como familia!
                 </Text>
-                <Stack direction="row" spacing={10}>
+                <Stack
+                  direction="row"
+                  spacing={10}
+                  justify="center"
+                  align="center"
+                >
                   <EmailIcon
                     w={12}
                     h={12}
                     color={useColorModeValue("black", "Black")}
                   />
+                  <Text>o</Text>
+                  <Image
+                    src={`${process.env.PUBLIC_URL}/pictures/logos/amazon.png`}
+                    width={"15%"}
+                  ></Image>
                   {/* <EmailIcon
                 w={12}
                 h={12}
@@ -87,14 +97,30 @@ export default function GiftTable() {
                 CLABE: 10293810328091391823
               </Text> */}
                 </Stack>
-                <Text
-                  fontSize={{ lg: "2xl", base: "lg" }}
-                  fontWeight={500}
-                  width="70%"
-                  color={useColorModeValue("black", "Black")}
+                <Stack
+                  direction="row"
+                  spacing={2}
+                  justify="center"
+                  align="center"
                 >
-                  Tendremos una caja para sobres el día del evento.
-                </Text>
+                  <Text
+                    fontSize={{ lg: "2xl", base: "md" }}
+                    fontWeight={550}
+                    width="60%"
+                    color={useColorModeValue("black", "Black")}
+                  >
+                    Tendremos una caja para sobres el día del evento.
+                  </Text>
+                  <Text
+                    as="a"
+                    fontSize={{ lg: "2xl", base: "md" }}
+                    href="https://www.amazon.com.mx/wedding/share/melinayever"
+                    color={useColorModeValue("black", "Black")}
+                    textDecor={"underline"}
+                  >
+                    Mesa de Regalos Amazon
+                  </Text>
+                </Stack>
               </Stack>
             </Box>
           </Stack>
