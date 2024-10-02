@@ -39,6 +39,21 @@ const theme = extendTheme({
     notes: `'Sans-serif', handwriting`,
   },
   breakpoints,
+  components: {
+    Toast: {
+      baseStyle: {
+        container: {
+          fontFamily: "sans-serif", // Apply sans-serif to the container of the toast
+        },
+        title: {
+          fontFamily: "sans-serif", // Apply sans-serif to the title
+        },
+        description: {
+          fontFamily: "sans-serif", // Apply sans-serif to the description
+        },
+      },
+    },
+  },
 });
 
 export default theme;

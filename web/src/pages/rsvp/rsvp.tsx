@@ -74,10 +74,18 @@ export default function RSVP() {
         body: formDataToSend,
         mode: "no-cors", // to avoid CORS policy issues
       });
+      // toast({
+      //   title: "¡Gracias por tu confirmación!",
+      //   description: "Hemos recibido tu respuesta.",
+      //   status: "success",
+      //   duration: 5000,
+      //   isClosable: true,
+      // });
       toast({
-        title: "¡Gracias por tu confirmación!",
-        description: "Hemos recibido tu respuesta.",
-        status: "success",
+        title: "ERROR",
+        description:
+          "La fecha límite para confirmar fue el 28 de Agosto, por favor ponte en contacto con los novios ya que tu confirmación no fue enviada.",
+        status: "error",
         duration: 5000,
         isClosable: true,
       });
